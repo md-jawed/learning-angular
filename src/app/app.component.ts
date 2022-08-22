@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'learning-angular';
+  name = "Aqueeb";
 }
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent {
     <h2>Hello World</h2>
     <p>This is my first component!</p>
   `,
-  styles: ['h2 { color: blue; }']
+  styles: ['h2 { font-color: blue; }']
 })
 export class HelloWorldComponent {
   // The code in this class drives the component's behavior.
