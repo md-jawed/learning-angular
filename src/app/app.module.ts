@@ -8,8 +8,8 @@ import { ParagraphComponent } from './paragraph/paragraph.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { EmailUsComponent } from './email-us/email-us.component';
-import { CallUsComponent } from './call-us/call-us.component';
+import { EmailUsComponent } from './contact-us/email-us/email-us.component';
+import { CallUsComponent } from './contact-us/call-us/call-us.component';
 
 @NgModule({
   declarations: [
