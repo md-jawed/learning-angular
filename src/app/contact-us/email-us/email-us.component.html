@@ -1,1 +1,38 @@
-<p>email-us works!</p>
+<p>Enter your details so that we can contact you.</p>
+<div [hidden]="submitted">
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" id="name" required [(ngModel)]="model.name" name="name">
+            
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="text" id="email" required [(ngModel)]="model.email" name="email">
+            
+        </div>
+        <div>
+            <label for="phone">Phone Number: </label>
+            <input type="tel" id="phone" [(ngModel)]="model.phone" name="phone" maxlength="10">
+            
+        </div>
+        <div>
+            <label for="reason">Reason to Contact: </label>
+            <select id="reason" required [(ngModel)]="model.reason" name="reason">
+                <option *ngFor="let reason of reasons" [value]="reason">{{reason}}</option>
+            </select>
+            
+        </div>
+        <button type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h3>Following Details are submitted. Thank You.</h3>
+    <p>Name: {{model.name}}</p>
+    <p>Email: {{model.email}}</p>
+    <p>Phone: {{model.phone}}</p>
+    <p>Reason to Contact: {{model.reason}}</p>
+    <p> <i>We will connect with you shortly...</i></p>
+</div>
