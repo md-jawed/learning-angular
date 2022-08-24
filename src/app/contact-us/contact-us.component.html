@@ -3,9 +3,10 @@
 <p>This is a contact us page it has two more routes so this is an example of<b> Nested Routes!</b> </p>
 <nav>
   <ul>
-    <li><a class="button" routerLinkActive="active" routerLink="email-us">Email Us</a></li>
-    <li><a class="button" routerLinkActive="active" routerLink="call-us">Call Us</a></li>
+    <!-- <li><a class="button" mat-raised-button routerLinkActive="active" routerLink="email-us">Email Us</a></li> -->
+    <li><button mat-raised-button routerLink="email-us" routerLinkActive="active">Email Us</button></li>
+    <!-- <li><a class="button" mat-flat-button routerLinkActive="active" routerLink="call-us">Call Us</a></li> -->
+    <li><button mat-raised-button routerLink="call-us" routerLinkActive="active">Call Us</button></li>
   </ul>
 </nav>
-
 <router-outlet></router-outlet>

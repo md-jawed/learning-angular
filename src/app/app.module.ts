@@ -11,7 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EmailUsComponent } from './contact-us/email-us/email-us.component';
 import { CallUsComponent } from './contact-us/call-us/call-us.component';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

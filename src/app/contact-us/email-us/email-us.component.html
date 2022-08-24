@@ -1,34 +1,78 @@
 <p>Enter your details so that we can contact you.</p>
-<div [hidden]="submitted">
-    <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+<div [hidden]="submitted" class="form-div">
+    <form  #contactForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
         <div>
-            <label for="name">Name: </label>
-            <input type="text" id="name" required [(ngModel)]="model.name" name="name">
+            <mat-form-field appearance="outline">
+                <mat-label for="name">Name: </mat-label>
+                <input matInput type="text"   id="name" pattern="[Aa][\w\s]*" required minlength="4" [(ngModel)]="model.name" name="name" #name="ngModel">
+                <mat-hint *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors?.['required']">
+                        Name is required.
+                    </div>
+                    <div *ngIf="name.errors?.['minlength']">
+                        Name should be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors?.['pattern']">
+                        Name should start with A.
+                    </div>
+                </mat-hint>
+            </mat-form-field>
             
         </div>
         <div>
-            <label for="email">Email: </label>
-            <input type="text" id="email" required [(ngModel)]="model.email" name="email">
+            <mat-form-field appearance="outline">
+                <mat-label for="email">Email: </mat-label>
+                <input matInput type="text"  id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                <mat-hint *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <mat-hint *ngIf="email.errors?.['required']">
+                        Email is required.
+                    </mat-hint>
+                    <mat-hint *ngIf="email.errors?.['pattern']">
+                        Email is not valid.
+                    </mat-hint>
+                </mat-hint>
+            </mat-form-field>
             
         </div>
         <div>
-            <label for="phone">Phone Number: </label>
-            <input type="tel" id="phone" [(ngModel)]="model.phone" name="phone" maxlength="10">
+            <mat-form-field appearance="outline">
+                <mat-label for="phone">Phone Number: </mat-label>
+                <input matInput type="tel"  id="phone" [(ngModel)]="model.phone" #phone="ngModel" name="phone" maxlength="10" pattern="[9][0-9]{9}"
+                required>
+                <mat-hint *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                    <div *ngIf="phone.errors?.['required']">
+                        Phone Number is required.
+                    </div>
+                    <div *ngIf="phone.errors?.['pattern']">
+                        Phone Number is not valid.
+                    </div>
+                </mat-hint>
+            </mat-form-field>
             
         </div>
         <div>
-            <label for="reason">Reason to Contact: </label>
-            <select id="reason" required [(ngModel)]="model.reason" name="reason">
-                <option *ngFor="let reason of reasons" [value]="reason">{{reason}}</option>
-            </select>
+            <mat-form-field appearance="outline">
+                <mat-label for="reason">Reason to Contact: </mat-label>
+                <mat-select id="reason"  required [(ngModel)]="model.reason" #reason="ngModel" name="reason">
+                    <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
+                </mat-select>
+                <mat-hint *ngIf="reason.invalid && (reason.dirty || reason.touched)">
+                    <div *ngIf="reason.errors?.['required']">
+                        Reason is required.
+                    </div>
+                </mat-hint>
+            </mat-form-field>
+            
             
         </div>
-        <button type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+        <br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+        
 
     </form>
 </div>
 
-<div [hidden]="!submitted">
+<div [hidden]="!submitted" class="submit-div">
     <h3>Following Details are submitted. Thank You.</h3>
     <p>Name: {{model.name}}</p>
     <p>Email: {{model.email}}</p>
