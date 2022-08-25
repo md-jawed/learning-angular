@@ -4,7 +4,7 @@ import { Contact } from './contact.model';
 @Component({
   selector: 'app-email-us',
   templateUrl: './email-us.component.html',
-  styleUrls: ['./email-us.component.css']
+  styleUrls: ['../contact-us.component.css']
 })
 export class EmailUsComponent implements OnInit {
 

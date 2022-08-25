@@ -1,6 +1,9 @@
+<h3>Template-driven Form</h3>
+<h4>Email us on: example@cropin.com</h4>
+<h2>OR</h2>
 <p>Enter your details so that we can contact you.</p>
 <div [hidden]="submitted" class="form-div">
-    <form  #contactForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <form  #contactForm="ngForm" (ngSubmit)="onSubmit()">
         <div>
             <mat-form-field appearance="outline">
                 <mat-label for="name">Name: </mat-label>

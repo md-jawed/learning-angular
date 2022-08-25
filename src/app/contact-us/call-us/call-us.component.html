@@ -1,1 +1,58 @@
-<p>call-us works!</p>
+<h3>Reactive Form</h3>
+<h4>Call us on: 18002344445</h4>
+<h2>OR</h2>
+<p>Enter your details so that we can Call you.</p>
+
+<div class="form-div" [hidden]="submitted">
+    <form [formGroup]="callUsForm" (ngSubmit)="onSubmit()">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label for="name">Name: </mat-label>
+                <input matInput type="text"   id="name" formControlName="name" name="name">
+                <mat-hint *ngIf="callUsForm.get('name')!.invalid && (callUsForm.get('name')!.dirty || callUsForm.get('name')!.touched)">
+                    <div *ngIf="callUsForm.get('name')!.errors?.['required']">
+                        Name is required.
+                    </div>
+                    <div *ngIf="callUsForm.get('name')!.errors?.['minlength']">
+                        Name should be at least 4 characters long.
+                    </div>
+                </mat-hint>
+            </mat-form-field>
+            
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label for="phone">Phone Number: </mat-label>
+                <input matInput type="tel"  id="phone" name="phone" formControlName="phone">
+                <mat-hint *ngIf="callUsForm.get('phone')!.invalid && (callUsForm.get('phone')!.dirty || callUsForm.get('phone')!.touched)">
+                    <div *ngIf="callUsForm.get('phone')!.errors?.['required']">
+                        Phone Number is required.
+                    </div>
+                    <div *ngIf="callUsForm.get('phone')!.errors?.['pattern']">
+                        Phone Number is not valid.
+                    </div>
+                </mat-hint>
+            </mat-form-field>
+            
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label for="reason">Reason to Contact: </mat-label>
+                <mat-select id="reason" formControlName="reason"  name="reason">
+                    <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
+                </mat-select>
+                
+            </mat-form-field>
+            
+            
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!callUsForm.valid">Call me</button>
+    </form>
+</div>
+<div class="form-div" [hidden]="!submitted">
+    <h3>Following Details are submitted. Thank You.</h3>
+    <p>Name: {{callUsForm.value.name}}</p>
+    <p>Phone: {{callUsForm.value.phone}}</p>
+    <p>Reason to Contact: {{callUsForm.value.reason}}</p>
+    <p> <i>We will Call you shortly...</i></p>
+</div>
