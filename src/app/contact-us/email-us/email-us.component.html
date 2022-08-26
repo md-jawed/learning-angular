@@ -13,7 +13,7 @@
                         Name is required.
                     </div>
                     <div *ngIf="name.errors?.['minlength']">
-                        Name should be at least 4 characters long.
+                        <small>Name should be at least 4 characters long.</small>
                     </div>
                     <div *ngIf="name.errors?.['pattern']">
                         Name should start with A.
@@ -37,7 +37,7 @@
             </mat-form-field>
             
         </div>
-        <div>
+        <!-- <div>
             <mat-form-field appearance="outline">
                 <mat-label for="phone">Phone Number: </mat-label>
                 <input matInput type="tel"  id="phone" [(ngModel)]="model.phone" #phone="ngModel" name="phone" maxlength="10" pattern="[9][0-9]{9}"
@@ -52,7 +52,7 @@
                 </mat-hint>
             </mat-form-field>
             
-        </div>
+        </div> -->
         <div>
             <mat-form-field appearance="outline">
                 <mat-label for="reason">Reason to Contact: </mat-label>
@@ -79,7 +79,6 @@
     <h3>Following Details are submitted. Thank You.</h3>
     <p>Name: {{model.name}}</p>
     <p>Email: {{model.email}}</p>
-    <p>Phone: {{model.phone}}</p>
     <p>Reason to Contact: {{model.reason}}</p>
     <p> <i>We will connect with you shortly...</i></p>
 </div>

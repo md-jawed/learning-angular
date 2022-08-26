@@ -14,7 +14,7 @@
                         Name is required.
                     </div>
                     <div *ngIf="callUsForm.get('name')!.errors?.['minlength']">
-                        Name should be at least 4 characters long.
+                        <small>Name should be at least 4 characters long.</small>
                     </div>
                 </mat-hint>
             </mat-form-field>
@@ -29,7 +29,7 @@
                         Phone Number is required.
                     </div>
                     <div *ngIf="callUsForm.get('phone')!.errors?.['pattern']">
-                        Phone Number is not valid.
+                        Phone Number should start with 9.
                     </div>
                 </mat-hint>
             </mat-form-field>
@@ -41,7 +41,11 @@
                 <mat-select id="reason" formControlName="reason"  name="reason">
                     <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
                 </mat-select>
-                
+                <mat-hint *ngIf="callUsForm.get('reason')!.invalid && (callUsForm.get('reason')!.dirty || callUsForm.get('reason')!.touched)">
+                    <div *ngIf="callUsForm.get('reason')!.errors?.['required']">
+                        Reason is required.
+                    </div>
+                </mat-hint>
             </mat-form-field>
             
             
@@ -49,7 +53,7 @@
         <button mat-raised-button color="primary" type="submit" [disabled]="!callUsForm.valid">Call me</button>
     </form>
 </div>
-<div class="form-div" [hidden]="!submitted">
+<div class="submit-div" [hidden]="!submitted">
     <h3>Following Details are submitted. Thank You.</h3>
     <p>Name: {{callUsForm.value.name}}</p>
     <p>Phone: {{callUsForm.value.phone}}</p>

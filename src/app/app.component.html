@@ -1,19 +1,39 @@
 
+<mat-toolbar color="primary" class="nav-bar">
+  <div>
+    <!-- <span>CROPIN</span> -->
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button"><mat-icon>menu</mat-icon></button>
+    <img src="https://www.cropin.com/hs-fs/hubfs/cropin_2021/cropin-logo.png?width=300&height=128&name=cropin-logo.png" height="45px" width="100px" class="img-style">
+  </div>
+  <div>
+    <nav>
+      <ul>
+        <!-- <li><a class="button" routerLink="/contact-us" routerLinkActive="active" ariaCurrentWhenActive="page">Contact Us</a></li> -->
+        <li><button mat-raised-button color="accent" routerLink="/contact-us" routerLinkActive="active" ariaCurrentWhenActive="page">Contact Us</button></li>
+        <!-- <li><a class="button" routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</a></li> -->
+        <li><button mat-raised-button color="accent" routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</button></li>
+        <!-- <li><a class="button" routerLink="/no-route" routerLinkActive="active" ariaCurrentWhenActive="page">Error page</a></li> -->
+        <li><button mat-raised-button color="accent" routerLink="/no-route" routerLinkActive="error" ariaCurrentWhenActive="page">Error Page</button></li>
+      </ul>
+    </nav>
+  </div>
+  
+</mat-toolbar>
 
-<h1>Angular App</h1>
 <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <!-- <li><a class="button" routerLink="/contact-us" routerLinkActive="active" ariaCurrentWhenActive="page">Contact Us</a></li> -->
-    <li><button mat-raised-button routerLink="/contact-us" routerLinkActive="active" ariaCurrentWhenActive="page">Contact Us</button></li>
-    <!-- <li><a class="button" routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</a></li> -->
-    <li><button mat-raised-button routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</button></li>
-    <!-- <li><a class="button" routerLink="/no-route" routerLinkActive="active" ariaCurrentWhenActive="page">Error page</a></li> -->
-    <li><button mat-raised-button routerLink="/no-route" routerLinkActive="active" ariaCurrentWhenActive="page">Error Page</button></li>
-  </ul>
-</nav>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    
+    <div style="color: white ;">
+      Registration Form
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+
 <!-- <app-email-us></app-email-us> -->
 <!-- <app-about-us></app-about-us> -->
 <!-- <hello-world></hello-world> -->
