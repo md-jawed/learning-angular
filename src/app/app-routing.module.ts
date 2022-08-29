@@ -5,6 +5,7 @@ import { CallUsComponent } from './contact-us/call-us/call-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EmailUsComponent } from './contact-us/email-us/email-us.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 const routes: Routes = [
   { path: 'contact-us', title: 'Contact Us', component: ContactUsComponent,children: [
     {
@@ -19,7 +20,8 @@ const routes: Routes = [
     },
   ]},
   { path: 'about-us', title:'About Us', component: AboutUsComponent},
-  { path: '',   redirectTo: '/about-us', pathMatch: 'full' }, // redirect to `about-us`
+  { path: 'registration-form', title:'Registration Form', component: RegistrationFormComponent},
+  { path: '',   redirectTo: '/contact-us', pathMatch: 'full' }, // redirect to `contact-us`
   { path: '**',title:'Error', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 

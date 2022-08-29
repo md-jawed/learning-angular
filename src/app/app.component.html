@@ -25,10 +25,10 @@
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     
     <div style="color: white ;">
-      Registration Form
+      <button mat-button routerLink="/registration-form" ariaCurrentWhenActive="page" >Registration Form</button>  
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content (click)="sidenav.close()">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

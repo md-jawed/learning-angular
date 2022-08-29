@@ -13,6 +13,8 @@ import { CallUsComponent } from './contact-us/call-us/call-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { AboutService } from './about.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { MaterialModule } from './material/material.module';
     ContactUsComponent,
     PageNotFoundComponent,
     EmailUsComponent,
-    CallUsComponent
+    CallUsComponent,
+    RegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AboutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

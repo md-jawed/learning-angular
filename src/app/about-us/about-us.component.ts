@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AboutService } from '../about.service';
 
 @Component({
   selector: 'app-about-us',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-us.component.css']
 })
 export class AboutUsComponent implements OnInit {
-
-  constructor() { }
+  public about!: string;
+  constructor(private _aboutService: AboutService) { }
 
   ngOnInit(): void {
+    this.about = this._aboutService.getAboutInfo();
   }
 
 }
