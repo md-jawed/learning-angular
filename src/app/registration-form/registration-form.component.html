@@ -4,19 +4,19 @@
 
 
 <div [hidden]="submitted" class="form-div">
-    <form  #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="name">Name: </mat-label>
-                <input matInput type="text"   id="name" pattern="[Aa][\w\s]*" required minlength="4" [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Enter your Full Name">
-                <mat-hint *ngIf="name.invalid && (name.dirty || name.touched)">
-                    <div *ngIf="name.errors?.['required']">
+                <input matInput type="text" formControlName="name"  id="name" name="name" placeholder="Enter your Full Name">
+                <mat-hint *ngIf="name!.invalid && (name!.dirty || name!.touched)">
+                    <div *ngIf="name!.errors?.['required']">
                         Name is required.
                     </div>
-                    <div *ngIf="name.errors?.['minlength']">
+                    <div *ngIf="name!.errors?.['minlength']">
                         <small>Name should be at least 4 characters long.</small>
                     </div>
-                    <div *ngIf="name.errors?.['pattern']">
+                    <div *ngIf="name!.errors?.['pattern']">
                         Name should start with A.
                     </div>
                 </mat-hint>
@@ -24,14 +24,14 @@
             
         </div>
         <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="email">Email: </mat-label>
-                <input matInput type="text"  id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required [(ngModel)]="model.email" name="email" #email="ngModel" placeholder="Enter your Email Id">
-                <mat-hint *ngIf="email.invalid && (email.dirty || email.touched)">
-                    <mat-hint *ngIf="email.errors?.['required']">
+                <input matInput type="text"  id="email" formControlName="email" name="email" placeholder="Enter your Email Id">
+                <mat-hint *ngIf="email!.invalid && (email!.dirty || email!.touched)">
+                    <mat-hint *ngIf="email!.errors?.['required']">
                         Email is required.
                     </mat-hint>
-                    <mat-hint *ngIf="email.errors?.['pattern']">
+                    <mat-hint *ngIf="email!.errors?.['pattern']">
                         Email is not valid.
                     </mat-hint>
                 </mat-hint>
@@ -40,11 +40,11 @@
         </div>
         
         <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="password">Password: </mat-label>
-                <input matInput type="password"  id="password" [(ngModel)]="model.password" #password="ngModel" name="password" required placeholder="Enter your Password">
-                <mat-hint *ngIf="password.invalid && (password.dirty || password.touched)">
-                    <div *ngIf="password.errors?.['required']">
+                <input matInput type="password"  id="password" formControlName="password" name="password" placeholder="Enter your Password">
+                <mat-hint *ngIf="password!.invalid && (password!.dirty || password!.touched)">
+                    <div *ngIf="password!.errors?.['required']">
                         Password is required.
                     </div>
                 </mat-hint>
@@ -52,21 +52,48 @@
             
         </div>
         <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="confpassword">Confirm Password: </mat-label>
-                <input matInput type="password"  id="confpassword" [(ngModel)]="model.password" #confpassword="ngModel" name="confpassword" required placeholder="ReEnter your Password">
-                <mat-hint *ngIf="confpassword.invalid && (confpassword.dirty || confpassword.touched)">
-                    <div *ngIf="confpassword.errors?.['required']">
-                        Enter your password again.
+                <input matInput type="password"  id="confpassword" formControlName="confpassword" name="confpassword" placeholder="Reenter your Password">
+                <mat-hint *ngIf="confpassword!.invalid && (confpassword!.dirty || confpassword!.touched)">
+                    <div *ngIf="confpassword!.errors?.['required']">
+                        Please enter your password again.
+                    </div>
+                </mat-hint>
+                <mat-hint *ngIf="registrationForm.errors?.['misMatch'] && !confpassword!.errors?.['required']" >
+                    <div>
+                        Passwords do not match.
                     </div>
                 </mat-hint>
             </mat-form-field>
             
         </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label for="number">Number</mat-label>
+                <input matInput type="number" step="0.01" id="number" formControlName="number" name="number" placeholder="Enter a decimal number">
+
+            </mat-form-field>
+        </div>
+
+        <br>
+        <div>
+            <mat-checkbox color="primary" id="check" formControlName="check" name="check" required>
+                I accept Terms & Cond.
+            </mat-checkbox>
+        </div>
         
         <br>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.form.valid">Submit</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Submit</button>
         
 
     </form>
+</div>
+<div class="submit-div left-align" [hidden]="!submitted">
+    <h3>Thank you for registering.</h3>
+    
+    <p>Name: {{registrationForm.value.name}}</p>
+    <p>Email: {{registrationForm.value.email}}</p>
+    <p>Number: <span appNumberFormat="registrationForm.value.number">{{registrationForm.value.number}}</span></p>
+    <h4><i>Website is in development you can't do anything else right now.</i></h4>
 </div>

@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { AboutService } from './about.service';
+import { NumberFormatDirective } from './registration-form/number-format.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { AboutService } from './about.service';
     PageNotFoundComponent,
     EmailUsComponent,
     CallUsComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    NumberFormatDirective
   ],
   imports: [
     BrowserModule,

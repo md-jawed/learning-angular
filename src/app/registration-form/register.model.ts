@@ -3,6 +3,7 @@ export class Register{
         public name: string,
         public email: string,
         public phone: number,
-        public password: string
+        public password: string,
+        public confpassword: string
     ){}
 }
