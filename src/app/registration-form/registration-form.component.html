@@ -9,7 +9,7 @@
             <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="name">Name: </mat-label>
                 <input matInput type="text" formControlName="name"  id="name" name="name" placeholder="Enter your Full Name">
-                <mat-hint *ngIf="name!.invalid && (name!.dirty || name!.touched)">
+                <mat-error *ngIf="name!.invalid && (name!.dirty || name!.touched)">
                     <div *ngIf="name!.errors?.['required']">
                         Name is required.
                     </div>
@@ -19,7 +19,7 @@
                     <div *ngIf="name!.errors?.['pattern']">
                         Name should start with A.
                     </div>
-                </mat-hint>
+                </mat-error>
             </mat-form-field>
             
         </div>
@@ -27,14 +27,17 @@
             <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="email">Email: </mat-label>
                 <input matInput type="text"  id="email" formControlName="email" name="email" placeholder="Enter your Email Id">
-                <mat-hint *ngIf="email!.invalid && (email!.dirty || email!.touched)">
-                    <mat-hint *ngIf="email!.errors?.['required']">
+                <mat-error *ngIf="email!.invalid && (email!.dirty || email!.touched)">
+                    <mat-error *ngIf="email!.errors?.['required'] && !email!.errors?.['email']">
                         Email is required.
-                    </mat-hint>
-                    <mat-hint *ngIf="email!.errors?.['pattern']">
+                    </mat-error>
+                    <!-- <mat-error *ngIf="email!.errors?.['pattern']">
                         Email is not valid.
-                    </mat-hint>
-                </mat-hint>
+                    </mat-error> -->
+                    <mat-error *ngIf="email!.errors?.['email'] && !email!.errors?.['required']">
+                        Email is not valid.
+                    </mat-error>
+                </mat-error>
             </mat-form-field>
             
         </div>
@@ -43,11 +46,11 @@
             <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="password">Password: </mat-label>
                 <input matInput type="password"  id="password" formControlName="password" name="password" placeholder="Enter your Password">
-                <mat-hint *ngIf="password!.invalid && (password!.dirty || password!.touched)">
+                <mat-error *ngIf="password!.invalid && (password!.dirty || password!.touched)">
                     <div *ngIf="password!.errors?.['required']">
                         Password is required.
                     </div>
-                </mat-hint>
+                </mat-error>
             </mat-form-field>
             
         </div>
@@ -55,11 +58,11 @@
             <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label for="confpassword">Confirm Password: </mat-label>
                 <input matInput type="password"  id="confpassword" formControlName="confpassword" name="confpassword" placeholder="Reenter your Password">
-                <mat-hint *ngIf="confpassword!.invalid && (confpassword!.dirty || confpassword!.touched)">
+                <mat-error *ngIf="confpassword!.invalid && (confpassword!.dirty || confpassword!.touched)">
                     <div *ngIf="confpassword!.errors?.['required']">
                         Please enter your password again.
                     </div>
-                </mat-hint>
+                </mat-error>
                 <mat-hint *ngIf="registrationForm.errors?.['misMatch'] && !confpassword!.errors?.['required']" >
                     <div>
                         Passwords do not match.

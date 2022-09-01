@@ -1,0 +1,25 @@
+<h2>JSON Form</h2>
+<form [formGroup]="jsonForm" (ngSubmit)="onSubmit()">
+        <div *ngFor="let control of formFields?.controls">
+            <div *ngSwitch="control.type">
+                <div *ngSwitchCase="'text' || 'number'">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="control.name">{{control.label}}</mat-label>
+                        <input matInput [id]="control.name" [type]="control.type" [value]="control.value" [formControlName]="control.name">
+                    </mat-form-field>
+                    
+                </div>
+                <div *ngSwitchCase="'select'">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="control.name">{{control.label}}</mat-label>
+                        <mat-select [id]="control.name" [value]="control.value" [formControlName]="control.name" >
+                            <mat-option *ngFor="let option of control.options?.split(',')" [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!jsonForm.valid">Submit</button>
+  </form>

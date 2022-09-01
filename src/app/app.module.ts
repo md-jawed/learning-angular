@@ -16,6 +16,9 @@ import { MaterialModule } from './material/material.module';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { AboutService } from './about.service';
 import { NumberFormatDirective } from './registration-form/number-format.directive';
+import { JSONFormComponent } from './jsonform/jsonform.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CreateJsonFormComponent } from './create-json-form/create-json-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,9 @@ import { NumberFormatDirective } from './registration-form/number-format.directi
     EmailUsComponent,
     CallUsComponent,
     RegistrationFormComponent,
-    NumberFormatDirective
+    NumberFormatDirective,
+    JSONFormComponent,
+    CreateJsonFormComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { NumberFormatDirective } from './registration-form/number-format.directi
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AboutService],
   bootstrap: [AppComponent]
