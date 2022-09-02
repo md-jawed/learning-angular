@@ -1,8 +1,16 @@
 <h2>JSON Form</h2>
-<form [formGroup]="jsonForm" (ngSubmit)="onSubmit()">
+<p>This form is created using a JSON File</p>
+<form class="submit-div" [formGroup]="jsonForm" [hidden]="submitted" (ngSubmit)="onSubmit()">
         <div *ngFor="let control of formFields?.controls">
-            <div *ngSwitch="control.type">
-                <div *ngSwitchCase="'text' || 'number'">
+            <div [ngSwitch]="control.type">
+                <div *ngSwitchCase="'text'">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="control.name">{{control.label}}</mat-label>
+                        <input matInput [id]="control.name" [type]="control.type" [value]="control.value" [formControlName]="control.name">
+                    </mat-form-field>
+                    
+                </div>
+                <div *ngSwitchCase="'number'">
                     <mat-form-field appearance="outline">
                         <mat-label for="control.name">{{control.label}}</mat-label>
                         <input matInput [id]="control.name" [type]="control.type" [value]="control.value" [formControlName]="control.name">
@@ -23,3 +31,37 @@
         </div>
         <button mat-raised-button color="primary" type="submit" [disabled]="!jsonForm.valid">Submit</button>
   </form>
+
+<div class="submit-div" [hidden]="!submitted">
+    <h3>Following Details are submitted.</h3>
+    <p>Name: {{jsonForm.value.name}}</p>
+    <p>Email: {{jsonForm.value.email}}</p>
+    <p>Age: {{jsonForm.value.age}}</p>
+    <p>Gender: {{jsonForm.value.gender}}</p>
+    <p> <i> Thank You...</i></p>
+</div>
+<!-- 
+  <form #jsonForm="ngForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let control of formFields?.controls">
+        <div [ngSwitch]="control.type">
+            <div *ngSwitchCase="'text' || 'number'">
+                <mat-form-field appearance="outline">
+                    <mat-label for="control.name">{{control.label}}</mat-label>
+                    <input matInput [id]="control.name" [type]="control.type" [value]="control.value" >
+                </mat-form-field>
+                
+            </div>
+            <div *ngSwitchCase="'select'">
+                <mat-form-field appearance="outline">
+                    <mat-label for="control.name">{{control.label}}</mat-label>
+                    <mat-select [id]="control.name" [value]="control.value">
+                        <mat-option *ngFor="let option of control.options?.split(',')" [value]="option">{{option}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+            </div>
+            
+        </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!jsonForm.valid">Submit</button>
+</form> -->

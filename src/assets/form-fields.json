@@ -4,20 +4,39 @@
         "name": "name",
         "label": "Name",
         "value": "",
-        "type": "text"
+        "type": "text",
+        "validators":{
+            "required": true
+        }
+      },
+      {
+        "name": "phone",
+        "label": "Phone",
+        "value": "",
+        "type": "number",
+        "validators":{
+            "required": true
+        }
       },
       {
         "name": "email",
         "label": "Email",
         "value": "",
-        "type": "text"
+        "type": "text",
+        "validators":{
+            "required": true
+        }
       },
       
       {
         "name": "age",
         "label": "Age",
         "value": "",
-        "type": "number"
+        "type": "number",
+        "validators": {
+            "min": 18,
+            "max": 60
+        }
       },
       
       {
@@ -25,7 +44,8 @@
         "label": "Gender",
         "value": "Select",
         "type": "select",
-        "options": "Male,Female,Other"
+        "options": "Male,Female,Other",
+        "validators": {}
       }
     ]
   }
