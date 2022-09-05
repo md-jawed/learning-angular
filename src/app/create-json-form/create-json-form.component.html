@@ -31,7 +31,8 @@
         </div>
         <button mat-raised-button color="primary" type="submit" [disabled]="!jsonForm.valid">Submit</button>
   </form>
-
+<!-- To do
+Change this view Dynamically according to the form -->
 <div class="submit-div" [hidden]="!submitted">
     <h3>Following Details are submitted.</h3>
     <p>Name: {{jsonForm.value.name}}</p>

@@ -98,6 +98,6 @@
     <p>Name: {{registrationForm.value.name}}</p>
     <p>Email: {{registrationForm.value.email}}</p>
     <p>Number: <span appNumberFormat *ngIf="submitted" [myval]="registrationForm.value.number">
-        {{registrationForm.value.number}}</span></p>
+        {{registrationForm.value.number}}</span> &nbsp; <small> <i>(This is done using Custom Attribute Directive)</i></small></p>
     <h4><i>Website is in development you can't do anything else right now.</i></h4>
 </div>
