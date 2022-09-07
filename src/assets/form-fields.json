@@ -1,21 +1,44 @@
 {
     "controls": [
+       {
+        "name": "gender",
+        "label": "Gender",
+        "value": "",
+        "type": "select",
+        "options": "Male,Female,Other",
+        "validators": {
+            "isData": false
+        }
+        
+      },
       {
         "name": "name",
         "label": "Name",
         "value": "",
         "type": "text",
         "validators":{
-            "required": true
+            "required": true,
+            "isData": false
+        }
+      }, 
+      {
+        "name": "address1",
+        "label": "Address 1",
+        "value": "",
+        "type": "text",
+        "validators":{
+            "required": true,
+            "isData": false
         }
       },
       {
-        "name": "phone",
-        "label": "Phone",
+        "name": "address2",
+        "label": "Address 2",
         "value": "",
-        "type": "number",
+        "type": "text",
         "validators":{
-            "required": true
+            "required": true,
+            "isData": false
         }
       },
       {
@@ -24,9 +47,32 @@
         "value": "",
         "type": "text",
         "validators":{
-            "required": true
+            "required": true,
+            "isData": false
         }
       },
+      {
+        "name": "altemail",
+        "label": "Alteranate Email",
+        "value": "",
+        "type": "text",
+        "validators":{
+            "required": true,
+            "isData": false
+        }
+      },
+      
+      {
+        "name": "phone",
+        "label": "Phone",
+        "value": "",
+        "type": "number",
+        "validators":{
+            "required": true,
+            "isData": false
+        }
+      },
+      
       
       {
         "name": "age",
@@ -35,17 +81,13 @@
         "type": "number",
         "validators": {
             "min": 18,
-            "max": 60
+            "max": 60,
+            "isData": false
         }
-      },
-      
-      {
-        "name": "gender",
-        "label": "Gender",
-        "value": "Select",
-        "type": "select",
-        "options": "Male,Female,Other",
-        "validators": {}
       }
+      
+      
     ]
+    ,
+    "data":[]
   }

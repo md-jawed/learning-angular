@@ -53,7 +53,8 @@ li{
     justify-content: space-between;
 }
 mat-sidenav-container{
-    height: 100%;
+    height: max-content;
+    min-height: 100%;
 }
 mat-sidenav, mat-sidenav-content{
     padding: 16px;

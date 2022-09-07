@@ -4,10 +4,12 @@
         <div *ngFor="let control of formFields?.controls">
             <div [ngSwitch]="control.type">
                 <div *ngSwitchCase="'text'">
+                    <hr *ngIf="control.name === 'address1'">
                     <mat-form-field appearance="outline">
                         <mat-label for="control.name">{{control.label}}</mat-label>
-                        <input matInput [id]="control.name" [type]="control.type" [value]="control.value" [formControlName]="control.name">
+                        <input matInput [id]="control.name" [type]="control.type" [value]="" [formControlName]="control.name">
                     </mat-form-field>
+                    <hr *ngIf="control.name === 'address2'">
                     
                 </div>
                 <div *ngSwitchCase="'number'">
@@ -35,11 +37,15 @@
 Change this view Dynamically according to the form -->
 <div class="submit-div" [hidden]="!submitted">
     <h3>Following Details are submitted.</h3>
-    <p>Name: {{jsonForm.value.name}}</p>
+    <div *ngFor="let control of formFields?.controls">
+        <p>{{control.label}}: {{jsonForm.value[control.name]}}</p>
+    </div>
+    <!-- <p>Name: {{jsonForm.value.name}}</p>
     <p>Email: {{jsonForm.value.email}}</p>
     <p>Age: {{jsonForm.value.age}}</p>
-    <p>Gender: {{jsonForm.value.gender}}</p>
+    <p>Gender: {{jsonForm.value.gender}}</p> -->
     <p> <i> Thank You...</i></p>
+    <button mat-flat-button color="accent" type="button" (click)="editForm()">Edit</button>
 </div>
 <!-- 
   <form #jsonForm="ngForm" (ngSubmit)="onSubmit()">

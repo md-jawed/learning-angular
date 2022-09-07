@@ -17,9 +17,9 @@ export class NumberFormatDirective implements OnChanges{
     // console.log(this.el.nativeElement.myval);
     // this.el.nativeElement.value = 'Test';
     this.el.nativeElement.style.color = 'red';
-    this.el.nativeElement.myval = parseFloat(this.myval).toFixed(2);
-    console.log(this.el.nativeElement.myval);
-    this.el.nativeElement.innerHTML = this.el.nativeElement.myval;
+    this.myval = parseFloat(this.myval).toFixed(2);
+    console.log(this.myval);
+    this.el.nativeElement.innerHTML = this.myval;
   }
 
 }

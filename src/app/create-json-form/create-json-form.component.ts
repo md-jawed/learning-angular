@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Data } from '@angular/router';
 
 export interface formControl {
   name: string;
@@ -14,9 +15,11 @@ export interface JsonValidators {
   min?: number;
   max?: number;
   required?: boolean;
+  isData?: boolean;
 }
 export interface JsonFormField {
   controls: formControl[];
+  data?: Array<Object>;
 }
 
 @Component({
@@ -60,15 +63,41 @@ export class CreateJsonFormComponent implements OnChanges,OnInit {
       }
       this.jsonForm.addControl(
         control.name,
-        this.fb.control(control.value,jsonvalid)
+        this.fb.control(control.validators.isData? this.formFields.data![0][control.name as keyof Object]: control.value,jsonvalid)
       );
-      // console.log("Create Form");
+      console.log("isData? ",control.validators.isData);
     }
+    // this.jsonForm.patchValue(this.formFields.data![0]);
     // console.log(this.formFields);
   }
   onSubmit(){
     console.log("Form Submitted");
     this.submitted = true;
+    this.addDataToObject(this.formFields.controls);
+    
   }
-
+  addDataToObject(controls: formControl[]){
+    // const CreatedData:Array<Object> = [];
+    const data = {}
+    for(const control of controls){
+      if(!!this.jsonForm.value[control.name]){
+        control.validators.isData= true;
+        data[control.name as keyof Object] = this.jsonForm.value[control.name]
+      }
+      
+      // CreatedData.push(data);
+    }
+    // CreatedData.push(data);
+    this.formFields.data?.pop();
+    this.formFields.data?.push(data);
+    console.log(this.formFields.data);
+  }
+  editForm(){
+    this.submitted = false;
+    this.jsonForm.reset(); 
+    this.jsonForm.patchValue(this.formFields.data![0]);
+    
+  }
 }
+
+
